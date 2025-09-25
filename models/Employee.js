@@ -1,12 +1,28 @@
 const mongoose = require('mongoose');
 
-// Define the schema using ES6 syntax
 const employeeSchema = new mongoose.Schema({
-  name: String,
-  address: String,
-  position: String,
-  salary: Number,
-  updated_at: { type: Date, default: Date.now },
+  name: {
+    type: String,
+    required: [true, 'Employee name is required.'], // Added validation
+    trim: true
+  },
+  address: {
+    type: String,
+    required: [true, 'Employee address is required.'],
+    trim: true
+  },
+  position: {
+    type: String,
+    required: [true, 'Employee position is required.'],
+    trim: true
+  },
+  salary: {
+    type: Number,
+    required: [true, 'Employee salary is required.']
+  }
+}, { 
+  // This option automatically adds createdAt and updatedAt fields
+  timestamps: true 
 });
 
 const Employee = mongoose.model('Employee', employeeSchema);

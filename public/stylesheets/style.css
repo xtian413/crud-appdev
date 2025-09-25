@@ -1,74 +1,212 @@
+/* --- CSS Variables for Easy Theming --- */
+:root {
+  --bg-primary: #0d1117;    /* Deepest background (inputs) */
+  --bg-secondary: #161b22;  /* Main page background */
+  --bg-tertiary: #1e293b;   /* Card/container background */
+  --border-color: #30363d;
+  --text-primary: #e6edf3;   /* Main text color, brighter than before */
+  --text-secondary: #8b949e; /* Dimmer text for labels/headers */
+  --link-color: #58a6ff;     /* Bright, accessible blue for links */
+  --accent-primary: #007bff;
+  --accent-primary-hover: #0056b3;
+  --accent-danger: #dc3545;
+  --accent-danger-hover: #c82333;
+}
+
+/* --- Global Styles & Dark Theme --- */
 body {
-  padding: 30px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #555555;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.container {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary); 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
   padding: 20px;
-  background-color: #efefef;
-  width: 400px;
-  border-radius: 6px;
-}
-.container h3 a {
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: #00AE4D;
-  border-radius: 6px;
-  color: #FFFFFF;
+  box-sizing: border-box;
 }
 
-.container h3 a:hover, .container table tr td button:hover {
-  background-color: #78F5AE;
-  color: #999999;
-}
-
-.container table {
-  width: 360px;
-}
-
-.container table tr td {
-  padding: 5px;
-}
-
-.container table tr td input, .container table tr td textarea {
-  border: solid 1px #dddddd;
-  padding: 5px 10px;
-  border-radius: 6px;
+/* --- Main Content Card --- */
+.container {
   width: 100%;
-  color: #777777;
+  max-width: 550px; /* Slightly wider for better spacing */
+  background-color: var(--bg-tertiary);
+  padding: 30px 40px;
+  border-radius: 15px;
+  border: 1px solid var(--border-color); /* Subtle border for definition */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.container table tr td button {
-  border: solid 1px #AABF5C;
-  background-color: #00AE4D;
-  border-radius: 6px;
+h1 {
+  color: #ffffff;
+  margin-bottom: 30px; /* More space below the title */
+  text-align: center;
+  font-size: 26px; /* Slightly larger title */
+}
+
+/* --- All Links (High Contrast) --- */
+/* This is a major fix for the purple links */
+a, a:visited {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #80bfff; /* Slightly lighter on hover */
+}
+
+
+/* --- Form & Input Styling --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-secondary); /* Using the secondary text color */
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary); 
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* --- Buttons & Links --- */
+.action-button {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   text-transform: uppercase;
-  color: #FFFFFF;
-  margin: 10px 0;
-  padding: 10px 20px;
+  letter-spacing: 0.8px; /* Added letter spacing */
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  text-align: center;
 }
 
-.container form button {
-  border: solid 1px #CB2027;
-  background-color: #DD4B39;
-  border-radius: 6px;
+.action-button:active {
+    transform: scale(0.98); /* Click effect */
+}
+
+.button-primary {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: var(--accent-primary-hover);
+}
+
+.button-danger {
+  background-color: var(--accent-danger);
+  color: white;
+}
+
+.button-danger:hover {
+  background-color: var(--accent-danger-hover);
+}
+
+.nav-link { 
+  display: inline-block;
+  padding: 10px 18px;
+  margin-bottom: 25px;
+  background-color: var(--accent-primary);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--accent-primary-hover);
+  text-decoration: none;
+  color: white; /* Ensure text stays white on hover */
+}
+
+/* --- Table Styling (for Employee List) --- */
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.list-table th, .list-table td {
+  padding: 15px 12px; /* More vertical padding */
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* FIX: Brighter, more visible table headers */
+.list-table th { 
+  color: var(--text-secondary);
+  font-weight: 600; /* Bolder */
+  font-size: 13px;
   text-transform: uppercase;
-  color: #FFFFFF;
-  margin: 10px 0;
-  padding: 10px 20px;
+  letter-spacing: 1px; /* Wider spacing for clarity */
 }
 
-.container .list-table {
-  width: 360px;
-  border: solid 2px #DDDDDD;
-  border-spacing: 0;
+/* Make sure links in the table use the bright link color */
+.list-table a, .list-table a:visited { 
+  color: var(--link-color); 
 }
 
-.container .list-table th {
-  border-bottom: solid 2px #DDDDDD;
+
+/* --- Details View (Big Improvement) --- */
+.details-view {
+  margin: 20px 0;
+}
+.details-view p {
+  display: grid;
+  grid-template-columns: 100px 1fr; /* Label and Value columns */
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.details-view strong {
+  font-weight: 600;
+  color: var(--text-secondary); /* Use dimmer color for labels */
+}
+
+/* --- Action Buttons Container (for Edit/Delete) --- */
+.actions-container {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+/* Make the DELETE button a full-width danger button */
+.actions-container form {
+    width: 100%;
 }

@@ -1,34 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Employee List</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="container">
-      <h3><a href="/employees/create">Create Employee</a></h3>
-      <h1>Employee List</h1>
-      <% if(employees.length>0) { %>
-      <table>
+<head>
+  <title>Employee List</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    /* Simple styles to make actions look clean */
+    .actions-cell {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Adds space between Edit and Delete */
+    }
+    .actions-cell form {
+      margin: 0; /* Removes default form margin */
+    }
+    .actions-cell .delete-button {
+      background: none;
+      border: none;
+      color: #dc3545; /* Red color for delete action */
+      cursor: pointer;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/employees/create" class="nav-link">Create Employee</a>
+    
+    <h1>Employee List</h1>
+
+    <% if(employees.length > 0) { %>
+      <table class="list-table">
         <thead>
           <tr>
             <th>Employee Name</th>
             <th>Position</th>
-          </tr>
+            <th>Actions</th>  </tr>
         </thead>
         <tbody>
-
-          <% for(var i=0; i<employees.length;i++) { %>
+          <% for(var i=0; i < employees.length; i++) { %>
             <tr>
-              <td><a href="/employees/show/<%= employees[i]._id%>"><%= employees[i].name%></a></td>
-              <td><%= employees[i].position%></td>
+              <td><%= employees[i].name %></td>
+              <td><%= employees[i].position %></td>
+              
+              <td class="actions-cell">
+                <a href="/employees/edit/<%= employees[i]._id %>">Edit</a>
+                <form action="/employees/delete/<%= employees[i]._id %>" method="post">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </td>
             </tr>
           <% } %>
         </tbody>
       </table>
-      <% } else { %>
-        <div>No employees found.</div>
-      <% } %>
-    </div>
-  </body>
+    <% } else { %>
+      <div>No employees found.</div>
+    <% } %>
+  </div>
+</body>
 </html>
